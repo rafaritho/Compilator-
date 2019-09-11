@@ -22,7 +22,7 @@ LP: '(';
 RP: ')';
 
 RESERVADA: 'if' | 'boolean' | 'class' | 'else' | 'int' | 'return' | 'void' | 'for' | 'break' | 'continue' | 'callout' ; 
-CYMBALS: ',' | ';' | '||' | '|' | '.' | ':';
+CYMBALS: ',' | ';' | '||' | '|' | ':';
 
 WS : (' ' | '\n' | '\t' ) -> skip;
 
