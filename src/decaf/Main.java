@@ -52,7 +52,10 @@ class Main {
                                 break;                            
                             case DecafLexer.OPERADOR:
                                 type = "";
-                               break; 
+                               break;
+                            case DecafLexer.CYMBALS:
+                                type = "";
+                               break;  
                                                                               
 		        			}
 		        			System.out.println (token.getLine() + type + " " + text);
