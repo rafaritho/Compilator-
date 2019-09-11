@@ -49,10 +49,7 @@ class Main {
                                 break;
                             case DecafLexer.ID:
                                 type = " IDENTIFIER";
-                                break;
-                            case DecafLexer.ASCII:
-                                type = "";
-                                break;
+                                break;                            
                             case DecafLexer.OPERADOR:
                                 type = "";
                                break; 
