@@ -16,28 +16,40 @@ tokens
 
 LCURLY : '{';
 RCURLY : '}';
-BOOLEAN: 'boolean';
-BREAK: 'break';
-CALLOUT: 'callout';
-CLASS: 'class';
-CONTINUE: 'continue';
-ELSE: 'else';
-FALSE: 'false';
-INT: 'int';
-RETURN: 'return';
-TRUE: 'true';
-VOID: 'void';
+LBRACKET: '[';
+RBRACKET: ']';
+LP: '(';
+RP: ')';
+
+RESERVADA: 'if' | 'boolean' | 'class' | 'else' | 'int' | 'return' | 'void' | 'for' | 'break' | 'continue' | 'callout' ; 
+
+WS : (' ' | '\n' | '\t' ) -> skip;
+
+SL_COMMENT : '//' (~'\n')* '\n' -> skip;
+
+BOOLEANLITERAL: 'true' | 'false';
+INTLITERAL	: INT+ | HEXADECIMAL;
+STRINGLITERAL: S; 
+ID : I;
+CHARLITERAL: CHAR | BACKSLASH;
 
 
-ID  :
-  ('a'..'z' | 'A'..'Z')+;
+fragment S: '\"' (C|WS|BACKSTRING|ASCII)+ '\"';
 
-WHITESPACE : (' ' | '\n' ) -> skip;
+fragment CHAR : '\'' C '\''; 
+fragment BACKSLASH: '\'' ('\\'B  | '\\\\' | '\\"' | '\\\'') '\'';
+fragment BACKSTRING: '\\n' | '\\t' | '\\\\' | '\\"' | '\\\'';
+fragment ESC :  '\\' ('n'|'"');
 
-COMENTARIO : '//' (~'\n')* '\n' -> skip;
+fragment INT: [0-9]+; 
+fragment C: [a-zA-Z] | INT; 
+fragment B: [nt]; 
 
-CHARLITERAL : '\'' (ESC|~'\'') '\'';
-STRING : '"' (ESC|~'"')* '"';
+fragment HEXADECIMAL: '0x'H+;
+fragment H: INT+ | [a-fA-F];
 
-fragment
-ESC :  '\\' ('n'|'"');
+fragment I: (C | C U | U C)+; 
+fragment U: '_';
+
+fragment ASCII: ',' | ';' | '||' | '|' | '.' | ':' | '?' ;
+OPERADOR: '+' | '-' | '*' | '<' | '<=' | '>=' | '!=' | '&&' | '=' | '>' | '<' | '==';
