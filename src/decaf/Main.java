@@ -38,9 +38,6 @@ class Main {
                             case DecafLexer.INTLITERAL:
                                type = " INTLITERAL";
                                break;                         
-                            case DecafLexer.RESERVADA:
-                                type = "";
-                                break;
                             case DecafLexer.BOOLEANLITERAL:
                                 type = " BOOLEANLITERAL";
                                 break;

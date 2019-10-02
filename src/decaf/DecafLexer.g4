@@ -21,8 +21,27 @@ RBRACKET: ']';
 LP: '(';
 RP: ')';
 
-RESERVADA: 'if' | 'boolean' | 'class' | 'else' | 'int' | 'return' | 'void' | 'for' | 'break' | 'continue' | 'callout' ; 
-CYMBALS: ',' | ';' | '||' | '|' | ':';
+PROGRAM: 'Program';
+BOOLEAN: 'boolean';
+INTVAR: 'int';
+COMMA: ',';
+SEMICOLON: ';';
+VOID: 'void';
+IF: 'if';
+EQUAL: '=';
+PLUSEQUAL: '+=';
+MINUSEQUAL: '-=';
+MINUS: '-';
+ELSE: 'else';
+FOR: 'for';
+RETURN: 'return';
+BREAK: 'break';
+CONTINUE: 'continue';
+EXCLAMATION: '!';
+CALLOUT: 'callout';
+CLASS: 'class';
+
+CYMBALS: '||' | '|' | ':';
 
 WS : (' ' | '\n' | '\t' ) -> skip;
 
@@ -33,6 +52,7 @@ INTLITERAL	: INT+ | HEXADECIMAL;
 STRINGLITERAL: S; 
 ID : I;
 CHARLITERAL: CHAR | BACKSLASH;
+
 
 
 fragment S: '\"' (C|WS|BACKSTRING|ASCII)+ '\"';
@@ -46,11 +66,11 @@ fragment INT: [0-9]+;
 fragment C: [a-zA-Z] | INT; 
 fragment B: [nt]; 
 
-fragment HEXADECIMAL: '0x'H+;
+HEXADECIMAL: '0x'H+;
 fragment H: INT+ | [a-fA-F];
 
 fragment I: (C | C U | U C)+; 
 fragment U: '_';
 
 fragment ASCII: ',' | ';' | '||' | '|' | '.' | ':' | '?' ;
-OPERADOR: '+' | '-' | '*' | '<' | '<=' | '>=' | '!=' | '&&' | '=' | '>' | '<' | '==';
+OPERADOR: '+' | '*' | '<' | '<=' | '>=' | '!=' | '&&' | '>' | '<' | '==';
