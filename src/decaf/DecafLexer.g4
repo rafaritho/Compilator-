@@ -53,8 +53,6 @@ STRINGLITERAL: S;
 ID : I;
 CHARLITERAL: CHAR | BACKSLASH;
 
-
-
 fragment S: '\"' (C|WS|BACKSTRING|ASCII)+ '\"';
 
 fragment CHAR : '\'' C '\''; 
