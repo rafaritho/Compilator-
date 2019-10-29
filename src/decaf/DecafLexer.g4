@@ -9,66 +9,111 @@ options
   language=Java;
 }
 
-tokens
-{
-  TK_class
-}
-
-LCURLY : '{';
-RCURLY : '}';
-LBRACKET: '[';
-RBRACKET: ']';
-LP: '(';
-RP: ')';
-
-PROGRAM: 'Program';
-BOOLEAN: 'boolean';
-INTVAR: 'int';
-COMMA: ',';
-SEMICOLON: ';';
-VOID: 'void';
 IF: 'if';
-EQUAL: '=';
-PLUSEQUAL: '+=';
-MINUSEQUAL: '-=';
-MINUS: '-';
+
 ELSE: 'else';
-FOR: 'for';
-RETURN: 'return';
-BREAK: 'break';
-CONTINUE: 'continue';
-EXCLAMATION: '!';
-CALLOUT: 'callout';
+
 CLASS: 'class';
 
-CYMBALS: '||' | '|' | ':';
+INTVAR: 'int';
 
-WS : (' ' | '\n' | '\t' ) -> skip;
+VOID: 'void';
 
-SL_COMMENT : '//' (~'\n')* '\n' -> skip;
+FOR: 'for';
+
+BREAK: 'break';
+
+CALLOUT: 'callout';
+
+CONTINUE: 'continue';
+
+BOOLEAN: 'boolean';
+
+RETURN: 'return';
 
 BOOLEANLITERAL: 'true' | 'false';
-INTLITERAL	: INT+ | HEXADECIMAL;
-STRINGLITERAL: S; 
-ID : I;
-CHARLITERAL: CHAR | BACKSLASH;
 
-fragment S: '\"' (C|WS|BACKSTRING|ASCII)+ '\"';
+LCURLY: '{';
 
-fragment CHAR : '\'' C '\''; 
-fragment BACKSLASH: '\'' ('\\'B  | '\\\\' | '\\"' | '\\\'') '\'';
-fragment BACKSTRING: '\\n' | '\\t' | '\\\\' | '\\"' | '\\\'';
-fragment ESC :  '\\' ('n'|'"');
+RCURLY: '}';
 
-fragment INT: [0-9]+; 
-fragment C: [a-zA-Z] | INT; 
-fragment B: [nt]; 
+LBRACKET: '[';
 
-HEXADECIMAL: '0x'H+;
-fragment H: INT+ | [a-fA-F];
+RBRACKET: ']';
 
-fragment I: (C | C U | U C)+; 
-fragment U: '_';
+LP: '(';
 
-fragment ASCII: ',' | ';' | '||' | '|' | '.' | ':' | '?' ;
-OPERADOR: '+' | '*' | '<' | '<=' | '>=' | '!=' | '&&' | '>' | '<' | '==';
+RP: ')';
+
+OU: '||';
+
+EXCLAMATION: '!';
+
+EQUAL: '=';
+
+PLUS: '+';
+
+MINUS: '-';
+
+MULT: '*';
+
+E: '&&';
+
+IG: '==';
+
+DIV: '/';
+
+MOD: '%';
+
+PLUSEQUAL: '+=';
+
+MINUSEQUAL: '-=';
+
+SEMICOLON: ';';
+
+COMMA: ',';
+
+DOIS_PONTOS: ':';
+
+MENORQ: '<';
+
+MAIORQ: '>';
+
+MAIORIGUAL: '>=';
+
+MENORIGUAL: '<=';
+
+DIFERENTE: '!=';
+
+ID: (LET|ESPC)(LET|ESPC|INT)*;
+
+WS_: [ \t\r\n]+ -> skip;
+
+SL_COMMENT	: '//' (~'\n')* '\n' -> skip;
+
+CHAR: '\'' (ESC|LET|INT) '\'';
+
+STRING: '\"' (WS_|ESC|LET|INT|SIM)*'\"';
+
+HEXLITERAL:   '0x'('a'..'f'|'A'..'F'|INT)+;
+
+ERRO_HEX: '0x';
+
+NUM: INT(INT)*;
+
+LET: LETRAS(LETRAS)*;
+
+fragment
+ESC:  '\\' ('n'|'"'|'t'|'\\');
+
+fragment
+SIM: ( '\\\"'|'.'|','|'?'|'\\\''|':'|'%');
+
+fragment
+INT: ('0'..'9');
+
+fragment
+ESPC: ('_');
+
+fragment
+LETRAS: ('a'..'z'|'A'..'Z');
