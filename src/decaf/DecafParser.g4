@@ -24,15 +24,7 @@ type_id: type ID (COMMA ID)*;
 
 type: INTVAR | BOOLEAN;
 
-statement: location assing_op expr SEMICOLON
-		| method_call SEMICOLON
-		| IF LP expr RP block (ELSE block)? 
-		| FOR ID EQUAL expr COMMA expr block 
-		| RETURN expr? SEMICOLON
-		| BREAK SEMICOLON
-		| CONTINUE SEMICOLON
-		| block
-	 	;
+statement: location assing_op expr SEMICOLON 		| method_call SEMICOLON | IF LP expr RP block (ELSE block)? | FOR ID EQUAL expr COMMA expr block | RETURN expr? SEMICOLON | BREAK SEMICOLON | CONTINUE SEMICOLON | block;
 
 assing_op: EQUAL | PLUSEQUAL | MINUSEQUAL;
 
@@ -42,14 +34,7 @@ method_name: ID;
 
 location: ID | ID LBRACKET expr RBRACKET;
 
-expr: location
-	| method_call
-	| literal
-	| expr bin_op expr
-	| MINUS expr
-	| EXCLAMATION expr
-	| LP expr RP
-	;
+expr: location | method_call | literal| expr bin_op expr 	| MINUS expr | EXCLAMATION expr | LP expr RP;
 
 callout_arg: expr | string_literal;
 
@@ -57,21 +42,21 @@ bin_op: arith_op | rel_op | eq_op | cond_op;
 
 arith_op: PLUS | MINUS | MULT | DIV | MOD;
 
-rel_op: MENORQ | MAIORQ | MENORIGUAL | MAIORIGUAL;
+rel_op: LESS | BIGGER | LESSEQ | BIGGEREQ;
 
-eq_op: IG | DIFERENTE;
+eq_op: EQUALS | DIFFERENT;
 
-cond_op: E | OU;
+cond_op: AND | OR;
 
 literal: int_literal | char_literal | bool_literal;
 
 alpha_num: alpha | digit;
 
-alpha: LET;
+alpha: C;
 
 digit: NUM;
 
-hex_digit: digit | LET+;
+hex_digit: digit | C+;
 
 int_literal: decimal_literal | hex_literal;
 
@@ -84,10 +69,3 @@ bool_literal: BOOLEANLITERAL;
 char_literal: CHAR;
 
 string_literal: STRING;
-
-
-
-
-
-
-
